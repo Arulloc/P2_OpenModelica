@@ -21,9 +21,9 @@ package Sattrak
     Real r "satellite radial distance (km)";
     Real p_sat_pf[3] "Position, Perifocal coords";
     Real v_sat_pf[3] "Velocity Perifocal coords";
-    Real RAAN "RAAN (deg)"; // from python
-    Real argper "argument of perigee (deg)"; // from python
-    Real angles[3] "3 angles between perifocal and ECI (rad)"; // from python
+    Real RAAN "RAAN (deg)"; 
+    Real argper "argument of perigee (deg)"; 
+    Real angles[3] "3 angles between perifocal and ECI (rad)"; 
   initial equation
   N = N0 + 2*Ndot2*tstart/86400 +3*Nddot6*tstart^2/86400^2;
   M = M0 + (N*360.)/86400.*tstart + Ndot2*tstart^2*360/86400^2 + Nddot6*tstart^3*360/86400^3;
