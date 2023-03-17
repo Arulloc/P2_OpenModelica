@@ -2,15 +2,15 @@ package Sattrak
   model Satellite
     constant Real pi = Modelica.Constants.pi;
     constant Real d2r = Modelica.Constants.D2R "Degrees to radians pi/180";
-    parameter Real ecc "Eccentricity";
-    parameter Real M0 "Mean anomaly at Epoch (deg)";
-    parameter Real N0 "Mean motion at Epoch (rev/d)";
-    parameter Real Ndot2 "1st der Mean Motion /2 rev/d^2";
-    parameter Real Nddot6 "2nd der Mean Motion /6 rev/d^3";
-    parameter Real tstart "Simulation start time, seconds since Epoch (s)";
-    parameter Real incl "inclination angle (deg)";
-    parameter Real argper0 "argument of perigee at start time (deg)";
-    parameter Real RAAN0 "RAAN at start time (deg)";
+    parameter Real ecc "Eccentricity"; // from python
+    parameter Real M0 "Mean anomaly at Epoch (deg)"; // from python
+    parameter Real N0 "Mean motion at Epoch (rev/d)"; // from python
+    parameter Real Ndot2 "1st der Mean Motion /2 rev/d^2"; // from python
+    parameter Real Nddot6 "2nd der Mean Motion /6 rev/d^3"; // from python
+    parameter Real tstart "Simulation start time, seconds since Epoch (s)"; // from python
+    parameter Real incl "inclination angle (deg)"; // from python
+    parameter Real argper0 "argument of perigee at start time (deg)"; // from python
+    parameter Real RAAN0 "RAAN at start time (deg)"; // from python
     Real J2 = 1.081874e-3 "Earth's Gravity Field";
     Real Re = 6378.135 "Earth's Radius (km)";
     Real M "Mean Anomaly (deg)";
@@ -21,9 +21,9 @@ package Sattrak
     Real r "satellite radial distance (km)";
     Real p_sat_pf[3] "Position, Perifocal coords";
     Real v_sat_pf[3] "Velocity Perifocal coords";
-    Real RAAN "RAAN (deg)";
-    Real argper "argument of perigee (deg)";
-    Real angles[3] "3 angles between perifocal and ECI (rad)";
+    Real RAAN "RAAN (deg)"; // from python
+    Real argper "argument of perigee (deg)"; // from python
+    Real angles[3] "3 angles between perifocal and ECI (rad)"; // from python
   initial equation
   N = N0 + 2*Ndot2*tstart/86400 +3*Nddot6*tstart^2/86400^2;
   M = M0 + (N*360.)/86400.*tstart + Ndot2*tstart^2*360/86400^2 + Nddot6*tstart^3*360/86400^3;
@@ -213,8 +213,8 @@ end SatTest;
 
   function theta_d
   
-    input Real days "Number of days from J2000 to start of day in question";
-    input Real hours "hours from midnight of the day in question to time in question";
+    input Real days "Number of days from J2000 to start of day in question"; // from python
+    input Real hours "hours from midnight of the day in question to time in question"; // from python
     output Real GMST "GMST angle (deg)";
   
     Real Du = hours / 24.-0.5 "calculating Du time preceeding midnight in 0.5 intervals";
